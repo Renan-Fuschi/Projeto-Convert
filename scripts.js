@@ -1,8 +1,10 @@
+// Moedas
 const USD = 5.36
 const EUR = 6.21
 const GBP = 7.09
+const CHF = 6.65
 
-
+// Captando os elementos do DOM
 const amount = document.getElementById("amount")
 const form = document.querySelector("form")
 const currency = document.getElementById("currency")
@@ -26,7 +28,6 @@ amount.addEventListener("input", (event) => {
 form.onsubmit = (event) => {
     event.preventDefault()
 
-    const currencyValue = currency.value
     const amountValue = amount.value
 
     switch (currency.value) {
@@ -39,16 +40,47 @@ form.onsubmit = (event) => {
         case "GBP":
             convertCurrency(amountValue, GBP, "£")
             break
+        case "CHF":
+            convertCurrency(amountValue, CHF, "CHF")
+            break
     }
 }
 
-
+// Converte a moeda selecionada para Real Brasileiro
     function convertCurrency(amountValue, currencyValue, symbol) {
         try {
+            // Atualiza e exibe a cotação da moeda selecionada
+            description.textContent = `${symbol} 1 = ${formatCurrencyBRL(currencyValue)}`
+            
+            // Calcula o valor convertido
+            let total = amountValue * currencyValue
+
+            if(isNaN(total)) {
+                return alert("Erro ao converter moeda, digite um valor válido.")
+            }
+
+            //Formata o valor convertido
+            total = formatCurrencyBRL(total).replace("R$", "")
+
+            // Exibe o valor convertido
+            result.textContent = `${total} Reais`
+
+            // Aplica a classe que exibe o footer com o resultado
             footer.classList.add("show-result")
         } catch (error) {
-            console.log(error)
+
+            //Remove a classe do footer, removendo ele da tela
             footer.classList.remove("show-result")
+            console.log(error)
             alert("Erro ao converter moeda, tente novamente.")
         }
+    }
+
+// Formata a moeda em Real Brasileiro
+    function formatCurrencyBRL(value) {
+        // Converte o valor para número para que possa ser formatado
+        return Number(value).toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+        })
     }
