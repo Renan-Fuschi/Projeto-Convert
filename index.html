@@ -21,19 +21,134 @@
 
   <main>
     <form>
+      <select name="options" id="options">
+        <option value="currency">Moedas</option>
+        <option value="speed">Medidas de velocidade (ex: km/h, mph)</option>
+        <option value="temperature">Temperatura (°C, °F, K)</option>
+        <option value="length">Comprimento (m, ft, in)</option>
+        <option value="weight">Massa/Peso (kg, lb, oz)</option>
+      </select>
+
       <label for="amount">valor</label>
       <input type="text" name="amount" id="amount" placeholder="0" required />
 
-      <label for="currency">moeda</label>
-      <select name="currency" id="currency" required>
-        <option value="" disabled selected hidden>Selecione a moeda</option>
-        <option value="USD">Dólar Americano</option>
-        <option value="EUR">Euro</option>
-        <option value="GBP">Libra Esterlina</option>
-        <option value="CHF">Franco Suíço</option>
-      </select>
+      <!-- Conversor de Moedas -->
+      <div id="currency-converter" class="converter">
+        <label for="currency">moeda</label>
+        <select name="currency" id="currency" required>
+          <option value="" disabled selected hidden>Selecione a moeda</option>
+          <option value="USD">Dólar Americano</option>
+          <option value="EUR">Euro</option>
+          <option value="GBP">Libra Esterlina</option>
+          <option value="CHF">Franco Suíço</option>
+          <option value="JPY">Iene Japonês</option>
+          <option value="CNY">Yuan Chinês</option>
+          <option value="CAD">Dólar Canadense</option>
+          <option value="AUD">Dólar Australiano</option>
+          <option value="ARS">Peso Argentino</option>
+          <option value="CLP">Peso Chileno</option>
+          <option value="UYU">Peso Uruguaio</option>
+          <option value="MXN">Peso Mexicano</option>
+          <option value="KRW">Won Sul-Coreano</option>
+          <option value="INR">Rúpia Indiana</option>
+          <option value="RUB">Rublo Russo</option>
+          <option value="ZAR">Rand Sul-Africano</option>
+          <option value="TRY">Lira Turca</option>
+          <option value="NOK">Coroa Norueguesa</option>
+          <option value="SEK">Coroa Sueca</option>
+          <option value="DKK">Coroa Dinamarquesa</option>
+        </select>
+      </div>
 
-      <button type="submit">Converter em reais</button>
+      <!-- Conversor de Velocidade -->
+      <div id="speed-converter" style="display: none;" class="converter">
+        <label for="from-speed">de</label>
+        <select name="from-speed" id="from-speed" required>
+          <option value="km/h">Quilômetros por hora (km/h)</option>
+          <option value="mph">Milhas por hora (mph)</option>
+          <option value="m/s">Metros por segundo (m/s)</option>
+          <option value="knots">Nós (nós)</option>
+          <option value="mach">Mach</option>
+        </select>
+
+        <label for="to-speed">para</label>
+        <select name="to-speed" id="to-speed" required>
+          <option value="km/h">Quilômetros por hora (km/h)</option>
+          <option value="mph">Milhas por hora (mph)</option>
+          <option value="m/s">Metros por segundo (m/s)</option>
+          <option value="knots">Nós (nós)</option>
+          <option value="mach">Mach</option>
+        </select>
+      </div>
+
+      <!-- Conversor de Temperatura -->
+      <div id="temperature-converter" style="display: none;" class="converter">
+        <label for="from-temp">de</label>
+        <select name="from-temp" id="from-temp" required>
+          <option value="celsius">Celsius (°C)</option>
+          <option value="fahrenheit">Fahrenheit (°F)</option>
+          <option value="kelvin">Kelvin (K)</option>
+        </select>
+
+        <label for="to-temp">para</label>
+        <select name="to-temp" id="to-temp" required>
+          <option value="celsius">Celsius (°C)</option>
+          <option value="fahrenheit">Fahrenheit (°F)</option>
+          <option value="kelvin">Kelvin (K)</option>
+        </select>
+      </div>
+
+      <!-- Conversor de Comprimento -->
+      <div id="length-converter" style="display: none;" class="converter">
+        <label for="from-length">de</label>
+        <select name="from-length" id="from-length" required>
+          <option value="m">Metros (m)</option>
+          <option value="km">Quilômetros (km)</option>
+          <option value="ft">Pés (ft)</option>
+          <option value="in">Polegadas (in)</option>
+          <option value="mi">Milhas (mi)</option>
+          <option value="yd">Jardas (yd)</option>
+          <option value="cm">Centímetros (cm)</option>
+          <option value="mm">Milímetros (mm)</option>
+        </select>
+
+        <label for="to-length">para</label>
+        <select name="to-length" id="to-length" required>
+          <option value="m">Metros (m)</option>
+          <option value="km">Quilômetros (km)</option>
+          <option value="ft">Pés (ft)</option>
+          <option value="in">Polegadas (in)</option>
+          <option value="mi">Milhas (mi)</option>
+          <option value="yd">Jardas (yd)</option>
+          <option value="cm">Centímetros (cm)</option>
+          <option value="mm">Milímetros (mm)</option>
+        </select>
+      </div>
+
+      <!-- Conversor de Peso -->
+      <div id="weight-converter" style="display: none;" class="converter">
+        <label for="from-weight">de</label>
+        <select name="from-weight" id="from-weight" required>
+          <option value="kg">Quilogramas (kg)</option>
+          <option value="g">Gramas (g)</option>
+          <option value="lb">Libras (lb)</option>
+          <option value="oz">Onças (oz)</option>
+          <option value="mg">Miligramas (mg)</option>
+          <option value="t">Toneladas (t)</option>
+        </select>
+
+        <label for="to-weight">para</label>
+        <select name="to-weight" id="to-weight" required>
+          <option value="kg">Quilogramas (kg)</option>
+          <option value="g">Gramas (g)</option>
+          <option value="lb">Libras (lb)</option>
+          <option value="oz">Onças (oz)</option>
+          <option value="mg">Miligramas (mg)</option>
+          <option value="t">Toneladas (t)</option>
+        </select>
+      </div>
+
+      <button type="submit" id="convert-btn">Converter em reais</button>
     </form>
 
     <footer>
