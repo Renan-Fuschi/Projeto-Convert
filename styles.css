@@ -23,7 +23,8 @@
 
 body {
   width: 100%;
-  height: 100vh;
+  min-height: 100dvh;
+  padding: 2rem 1rem;
 
   background-image: url("./img/bg.png");
   background-size: contain;
@@ -38,8 +39,13 @@ body {
   color: #f1f2f6;
 }
 
+body > img {
+  width: min(180px, 60vw);
+  height: auto;
+}
+
 main {
-  width: 480px;
+  width: min(480px, 100%);
   border-radius: 1.5rem;
 
   border: 1px solid #2f3279;
@@ -52,7 +58,18 @@ form {
   display: flex;
   flex-direction: column;
 
-  padding: 3.5rem 4rem;
+  padding: clamp(1.5rem, 4vw, 3.5rem) clamp(1.25rem, 4vw, 4rem);
+}
+
+.converter {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.converter.active {
+  display: flex;
 }
 
 label {
@@ -132,13 +149,13 @@ button:focus {
 
 footer {
   background-color: #1f2151;
-  padding: 2.5rem;
+  padding: clamp(1.25rem, 3vw, 2.5rem);
   max-height: 196px;
 
   text-align: center;
   display: none;
 
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .show-result {
@@ -156,7 +173,48 @@ footer span {
 footer h1 {
   color: #f1f2f6;
   font-weight: 700;
-  font-size: 2rem;
-  line-height: 3rem;
-  word-break: break-all;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  line-height: 1.3;
+  word-break: break-word;
+}
+
+@media (max-width: 600px) {
+  body {
+    justify-content: flex-start;
+    gap: 1.5rem;
+  }
+
+  main {
+    width: 100%;
+    border-radius: 1rem;
+  }
+
+  form {
+    padding: 1.5rem 1rem;
+  }
+
+  button {
+    margin-top: 2rem;
+  }
+
+  footer {
+    padding: 1.25rem 1rem;
+  }
+}
+
+@media (max-width: 360px) {
+  body {
+    padding: 1rem 0.75rem;
+  }
+
+  input,
+  select,
+  button {
+    font-size: 0.95rem;
+    padding: 1rem 0.875rem;
+  }
+
+  footer span {
+    font-size: 0.9rem;
+  }
 }

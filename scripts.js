@@ -34,10 +34,7 @@ function showConverter(type) {
     Object.entries(converters).forEach(([converterType, converter]) => {
         const isActive = converterType === type
 
-        converter.style.display = isActive ? "flex" : "none"
-        converter.style.flexDirection = isActive ? "column" : "none"
-        converter.style.gap = isActive ? "10px" : "none"
-        converter.style.alignItems = isActive ? "center" : "none"
+        converter.classList.toggle("active", isActive)
         converter.querySelectorAll("input, select").forEach((field) => {
             field.disabled = !isActive
         })
